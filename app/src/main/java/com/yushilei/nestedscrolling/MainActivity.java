@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         recycler.setLayoutManager(new LinearLayoutManager(this));
         List<String> data = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
-            data.add("item+" + i);
+            data.add("RecyclerView+" + i);
         }
         recycler.setAdapter(new Adapter(this, data));
     }

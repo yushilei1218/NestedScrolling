@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="软件介绍"
+            android:text="topView"
             android:textSize="30sp"
             android:textStyle="bold"/>
     </RelativeLayout>
@@ -31,27 +31,4 @@
         android:background="#00ccff"
         android:padding="10dp"/>
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:orientation="horizontal">-->
-
-    <!--<Button-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:onClick="scrollTo"-->
-    <!--android:text="scrollTo"/>-->
-
-    <!--<Button-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:onClick="scrollBy"-->
-    <!--android:text="scrollBy"/>-->
-
-    <!--<Button-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:onClick="jump"-->
-    <!--android:text="jump"/>-->
-    <!--</LinearLayout>-->
 </com.yushilei.nestedscrolling.NestedScrollLayout>
