@@ -7,7 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.OverScroller;
 import android.widget.Scroller;
 import android.widget.TextView;
 
@@ -18,8 +20,9 @@ import android.widget.TextView;
  */
 public class NestedScrollLayout extends LinearLayout implements NestedScrollingParent {
 
-    private TextView topV;
-    private Scroller mScroller;
+    private View topV;
+    private OverScroller mScroller;
+    private RecyclerView recycler;
 
     public NestedScrollLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -64,16 +67,6 @@ public class NestedScrollLayout extends LinearLayout implements NestedScrollingP
 
     }
 
-//    @Override
-//    public boolean onNestedFling(View target, float velocityX, float velocityY, boolean consumed) {
-//        Log.d(TAG, "onNestedFling velocityX" + velocityX + ";velocityY=" + velocityY + ";consumed=" + consumed);
-//        if (getScrollY() >= topV.getHeight()) {
-//            return true;
-//        }
-//        fling((int) velocityY);
-//        return true;
-//    }
-
     public void fling(int velocityY) {
         mScroller.fling(0, getScrollY(), 0, velocityY, 0, 0, 0, topV.getHeight());
         invalidate();
@@ -93,8 +86,9 @@ public class NestedScrollLayout extends LinearLayout implements NestedScrollingP
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        topV = (TextView) findViewById(R.id.text_top);
-        mScroller = new Scroller(getContext());
+        topV = findViewById(R.id.text_top);
+        recycler = (RecyclerView) findViewById(R.id.recycler);
+        mScroller = new OverScroller(getContext());
     }
 
     @Override
@@ -111,4 +105,18 @@ public class NestedScrollLayout extends LinearLayout implements NestedScrollingP
         }
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int height = getMeasuredHeight();
+        ViewGroup.LayoutParams layoutParams = recycler.getLayoutParams();
+        layoutParams.height = height;
+        recycler.setLayoutParams(layoutParams);
+
+        setMeasuredDimension(getMeasuredWidth()
+                , topV.getMeasuredHeight() + recycler.getMeasuredHeight());
+
+
+        Log.d(TAG, "Height=" + getMeasuredHeight() + " TopV height=" + topV.getHeight() + ";recycler =" + recycler.getMeasuredHeight());
+    }
 }

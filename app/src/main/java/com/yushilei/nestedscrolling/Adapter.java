@@ -2,6 +2,7 @@ package com.yushilei.nestedscrolling;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +32,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.VH> {
         return tag;
     }
 
+    String TAG = "Adapter";
+
     @Override
     public void onBindViewHolder(VH holder, int position) {
+        Log.d(TAG, "onBindViewHolder");
         holder.text.setText(data.get(position));
     }
 
